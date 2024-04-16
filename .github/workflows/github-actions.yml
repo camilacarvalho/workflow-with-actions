@@ -1,0 +1,39 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Nome do Workflow
+
+# Controla quando o fluxo de trabalho será executado
+on: # como ele vai ser ativo?
+  # Aciona o fluxo de trabalho em eventos de solicitação push ou pull, mas apenas para o branch "main"
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Permite que você execute este fluxo de trabalho manualmente na guia Ações
+  workflow_dispatch:
+
+# Uma execução de fluxo de trabalho é composta por um ou mais trabalhos que podem ser executados sequencialmente ou em paralelo
+jobs:
+  # Este fluxo de trabalho contém um único trabalho chamado "build"
+  build:
+    # O tipo de executor em que o trabalho será executado
+    # existem várias possibilidades de VMs prontas para rodar o job
+    runs-on: ubuntu-latest
+
+    # As etapas representam uma sequência de tarefas que serão executadas como parte do trabalho
+    steps:
+      #Faz check-out do seu repositório em $GITHUB_WORKSPACE, para que seu trabalho possa acessá-lo
+      - uses: actions/checkout@v3
+
+#nome do passo
+      - name: Run a one-line script
+# Executa um único comando usando o shell dos runners
+#mas pode também executar uma ação pré-configurada
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
